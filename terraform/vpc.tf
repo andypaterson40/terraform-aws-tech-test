@@ -18,7 +18,7 @@ resource "aws_subnet" "nginx_subnet" {
 
   vpc_id            = aws_vpc.nginx_vpc.id
   availability_zone = data.aws_availability_zones.available.names[count.index]
-  cidr_block = cidrsubnet(var.vpc-cidr, 3, count.index)
+  cidr_block        = cidrsubnet(var.vpc-cidr, 3, count.index)
 
   tags = {
     Name = "public-subnet-${count.index + 1}"
@@ -50,6 +50,6 @@ resource "aws_route" "public_subnet_route" {
 resource "aws_route_table_association" "public_subnet_route_table_association" {
   count = length(data.aws_availability_zones.available.names)
 
-  subnet_id = aws_subnet.nginx_subnet[count.index].id
+  subnet_id      = aws_subnet.nginx_subnet[count.index].id
   route_table_id = aws_route_table.public_subnet_route_table.id
 }

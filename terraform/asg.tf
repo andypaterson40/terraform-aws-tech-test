@@ -32,7 +32,7 @@ resource "aws_launch_configuration" "launch-configuration" {
 
 # Auto scaling group
 resource "aws_autoscaling_group" "asg" {
-  desired_capacity     = var.capacity
+  desired_capacity     = length(data.aws_availability_zones.available.names)
   launch_configuration = aws_launch_configuration.launch-configuration.id
   max_size             = length(data.aws_availability_zones.available.names)
   min_size             = var.minimum

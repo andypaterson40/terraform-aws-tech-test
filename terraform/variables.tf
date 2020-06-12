@@ -21,14 +21,9 @@ variable "public_key" {
   default = "~/.ssh/id_rsa.pub"
 }
 
-# Auto scaling capacity
-variable "capacity" {
-  default = 1
-}
-
 # Auto scaling minimum size
 variable "minimum" {
-  default = 1
+  default = 2
 }
 
 # Bastion - Access from CIDR
